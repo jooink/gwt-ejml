@@ -9,7 +9,7 @@
   
   <!-- Default page to serve -->
   <welcome-file-list>
-    <welcome-file>BoofCVTesting.html</welcome-file>
+    <welcome-file>GwtEjml.html</welcome-file>
   </welcome-file-list>
 
 </web-app>
