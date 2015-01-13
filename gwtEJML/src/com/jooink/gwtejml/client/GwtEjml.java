@@ -35,7 +35,6 @@ public class GwtEjml implements EntryPoint {
 		final LogPanel lp=new LogPanel(Level.ALL,false,false);
 		lp.setTitle("Results");
 		RootPanel.get().add(lp.getWidget());
-		//ExampleFixedSizedMatrix.init();
 		final Logger lg=Logger.getLogger("");
 
 		lb.addChangeHandler(new ChangeHandler() {
@@ -43,7 +42,7 @@ public class GwtEjml implements EntryPoint {
 			@Override
 			public void onChange(ChangeEvent event) {
 				lp.clear();
-				lg.log(Level.INFO,"Starting ...");
+				//lg.log(Level.INFO,"Starting ...");
 				int index=lb.getSelectedIndex();
 				
 				switch (index) {
