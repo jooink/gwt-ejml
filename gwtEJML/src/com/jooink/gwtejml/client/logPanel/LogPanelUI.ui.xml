@@ -1,0 +1,64 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style type="com.jooink.gwtejml.client.logPanel.LogPanelUI.LogPanelUIStyle">
+		.title {
+			padding-left: 10px;
+			/*background-color: rgb(236,82,63);*/
+			font-weight: bold;
+			line-height: 2em;
+			border-bottom: 1px solid rgb(102,102,102);
+			border-top: 1px solid rgb(102,102,102);
+		}
+		
+		.container {
+			padding: 10px;
+			border-bottom: 1px solid rgb(102,102,102);
+			border-top: 1px solid rgb(102,102,102);
+		}
+		
+		.messageList {
+			padding-left: 10px;
+			padding-top: 10px;
+		}
+		
+		.message {
+			color: rgb(102,102,102);
+			/*border-bottom: 1px solid rgb(102,102,102);*/
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+
+		.message div:last-child {
+			padding-left: 13px;
+	    }
+
+		.warning div:first-child {
+			color: rgb(236,82,63);
+	    }
+	    
+		.error div:first-child {
+			color: rgb(236,82,63);
+	    }
+	    
+		.warning div:last-child {
+			color: rgb(102,102,102);
+	    }
+	    
+		.warning {
+			/*color: rgb(236,82,63);*/
+		}
+		.error {
+			/*color: red;*/
+		}
+		.info {
+			/*color: rgb(102,102,102);*/
+		}
+	</ui:style>
+	<g:FlowPanel addStyleNames='{style.container}'>
+		<g:HTML ui:field="title" addStyleNames='{style.title}'> Log Panel </g:HTML>
+		<g:FlowPanel ui:field="messageList" addStyleNames='{style.messageList}'>
+			
+		</g:FlowPanel>
+	</g:FlowPanel>
+</ui:UiBinder> 
