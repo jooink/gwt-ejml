@@ -40,8 +40,8 @@ import com.google.gwt.core.client.Scheduler.ScheduledCommand;
  */
 public class BenchmarkKalmanPerformance {
 
-    private static final int NUM_TRIALS = 200;
-    private static final int MAX_STEPS = 1000;
+    private static final int NUM_TRIALS = 100;//200;
+    private static final int MAX_STEPS = 250;//1000;
     private static final double T = 1.0;
 
     static Logger lg=Logger.getLogger("BenchmarkKalmanPerformance");
@@ -61,11 +61,14 @@ public class BenchmarkKalmanPerformance {
         final DenseMatrix64F F = createF(T);
         final DenseMatrix64F Q = createQ(T,0.1);
         final DenseMatrix64F H = createH();
-        
+
+		lg.log(Level.INFO, "MAX_STEPS = "+MAX_STEPS);
+		lg.log(Level.INFO, "NUM_TRIALS = "+NUM_TRIALS);
+
         Scheduler.get().scheduleDeferred(new ScheduledCommand() {    
 			@Override
 			public void execute() {
-				
+								
 		        for(final KalmanFilter f : filters ) {
 		        	
 		            Scheduler.get().scheduleDeferred(new ScheduledCommand() {    
@@ -83,7 +86,7 @@ public class BenchmarkKalmanPerformance {
 				            long timeAfter = System.currentTimeMillis();
 
 				            lg.log(Level.INFO, "Filter = "+f.getClass().getSimpleName());
-				            lg.log(Level.INFO, "Elapsed time: "+(timeAfter-timeBefore));
+				            lg.log(Level.INFO, "Elapsed time: "+(timeAfter-timeBefore)+" ms");
 
 				            System.gc();
 		    				
