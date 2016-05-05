@@ -1,14 +1,26 @@
+/*
+ * Copyright (c) 2009-2015, Peter Abeles. All Rights Reserved.
+ *
+ * This file is part of Efficient Java Matrix Library (EJML).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.ejml.ops;
 
 import org.ejml.data.*;
-import org.ejml.ops.ReadMatrixCsv;
 
 import java.io.*;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 /**
  * Provides simple to use routines for reading and writing matrices to and from files.
@@ -17,197 +29,219 @@ import java.util.logging.Logger;
  */
 public class MatrixIO {
 
-	static Logger lg=Logger.getLogger(MatrixIO.class.getName());
-
-    /**
-     * Saves a matrix to disk using Java binary serialization.
-     *
-     * @param A The matrix being saved.
-     * @param fileName Name of the file its being saved at.
-     * @throws java.io.IOException
-     */
-    public static void saveBin(RealMatrix64F A, String fileName)
-        throws IOException {
-    	//GWT does not support such an operation!
+	/**
+	 * Saves a matrix to disk using Java binary serialization.
+	 *
+	 * @param A The matrix being saved.
+	 * @param fileName Name of the file its being saved at.
+	 * @throws java.io.IOException
+	 */
+	public static void saveBin(RealMatrix64F A, String fileName)
+			throws IOException
+	{
+	  	//GWT does not support such an operation!
     	throw new UnsupportedOperationException("MatrixIO.saveBin: GWT-EJML does not support saving to file");
     	//
-    }
 
-    /**
-     * Loads a DeneMatrix64F which has been saved to file using Java binary
-     * serialization.
-     *
-     * @param fileName The file being loaded.
-     * @return  DenseMatrix64F
-     * @throws IOException
-     */
-    public static <T extends RealMatrix64F> T loadBin(String fileName)
-        throws IOException {
-    	//GWT does not support such an operation!
-    	throw new UnsupportedOperationException("MatrixIO.loadBin: GWT-EJML does not support loading from file");
-    	//
-    }
+	}
 
-    /**
-     * Saves a matrix to disk using in a Column Space Value (CSV) format. For a 
-     * description of the format see {@link MatrixIO#loadCSV(String)}.
-     *
-     * @param A The matrix being saved.
-     * @param fileName Name of the file its being saved at.
-     * @throws java.io.IOException
-     */
-    public static void saveCSV( RealMatrix64F A , String fileName )
-        throws IOException {
-    	//GWT does not support such an operation!
-    	throw new UnsupportedOperationException("MatrixIO.saveCSV: GWT-EJML does not support saving from file");
-    	//
-    }
+	/**
+	 * Loads a DeneMatrix64F which has been saved to file using Java binary
+	 * serialization.
+	 *
+	 * @param fileName The file being loaded.
+	 * @return  DenseMatrix64F
+	 * @throws IOException
+	 */
+	public static <T extends RealMatrix64F> T loadBin(String fileName)
+			throws IOException
+	{
+		//GWT does not support such an operation!
+		throw new UnsupportedOperationException("MatrixIO.loadBin: GWT-EJML does not support loading from file");
+		//
+	}
 
-    /**
-     * Reads a matrix in which has been encoded using a Column Space Value (CSV)
-     * file format. The number of rows and columns are read in on the first line. Then
-     * each row is read in the subsequent lines.
-     *
-     * @param fileName The file being loaded.
-     * @return DenseMatrix64F
-     * @throws IOException
-     */
-    public static DenseMatrix64F loadCSV( String fileName )
-        throws IOException {
-    	//GWT does not support such an operation!
-    	//
-    	throw new UnsupportedOperationException("MatrixIO.loadCSV: GWT-EJML does not support loading from file");
-    	//
-    }
+	/**
+	 * Saves a matrix to disk using in a Column Space Value (CSV) format. For a 
+	 * description of the format see {@link MatrixIO#loadCSV(String)}.
+	 *
+	 * @param A The matrix being saved.
+	 * @param fileName Name of the file its being saved at.
+	 * @throws java.io.IOException
+	 */
+	public static void saveCSV( RealMatrix64F A , String fileName )
+			throws IOException
+	{
+	       	//GWT does not support such an operation!
+	       	throw new UnsupportedOperationException("MatrixIO.saveCSV: GWT-EJML does not support saving from file");
+	       	//
+	}
 
-    /**
-     * Reads a matrix in which has been encoded using a Column Space Value (CSV)
-     * file format.  For a description of the format see {@link MatrixIO#loadCSV(String)}.
-     *
-     * @param fileName The file being loaded.
-     * @param numRows number of rows in the matrix.
-     * @param numCols number of columns in the matrix.
-     * @return DenseMatrix64F
-     * @throws IOException
-     */
-    public static DenseMatrix64F loadCSV( String fileName , int numRows , int numCols )
-        throws IOException
-    {
+	/**
+	 * Reads a matrix in which has been encoded using a Column Space Value (CSV)
+	 * file format. The number of rows and columns are read in on the first line. Then
+	 * each row is read in the subsequent lines.
+	 *
+	 * @param fileName The file being loaded.
+	 * @return DenseMatrix64F
+	 * @throws IOException
+	 */
+	public static DenseMatrix64F loadCSV( String fileName )
+			throws IOException
+	{
     	//GWT does not support such an operation!
     	//
     	throw new UnsupportedOperationException("MatrixIO.loadCSV: GWT-EJML does not support loading from file");
     	//
-    }
+	}
 
-    public static void print( PrintStream out , RealMatrix64F mat ) {
-        print(out,mat,6,3);
-    }
+	/**
+	 * Reads a matrix in which has been encoded using a Column Space Value (CSV)
+	 * file format.  For a description of the format see {@link MatrixIO#loadCSV(String)}.
+	 *
+	 * @param fileName The file being loaded.
+	 * @param numRows number of rows in the matrix.
+	 * @param numCols number of columns in the matrix.
+	 * @return DenseMatrix64F
+	 * @throws IOException
+	 */
+	public static DenseMatrix64F loadCSV( String fileName , int numRows , int numCols )
+			throws IOException
+	{
+	   	//GWT does not support such an operation!
+    	//
+    	throw new UnsupportedOperationException("MatrixIO.loadCSV: GWT-EJML does not support loading from file");
+    	//
+	}
 
-    public static void print(PrintStream out, RealMatrix64F mat , int numChar , int precision ) {
-        //String format = "%"+numChar+"."+precision+"f ";
-		String format = "####000.000 ";
+	public static void print( PrintStream out , RealMatrix64F mat ) {
+		print(out,mat,6,3);
+	}
 
-        print(out, mat,format);
-    }
+	public static void print(PrintStream out, RealMatrix64F mat , int numChar , int precision ) {
+		String format = "%"+numChar+"."+precision+"f ";
 
-    public static void print(PrintStream out , RealMatrix64F mat , String format ) {
-    	//TODO search the type of the matrix modifying "isAssignableFrom" not supported by GWT jre 
-		String type = "--";//ReshapeMatrix64F.class.isAssignableFrom(mat.getClass()) ? "dense" : "dense fixed";
+		print(out, mat,format);
+	}
 
-		lg.log(Level.INFO, "Type = "+type+" , numRows = "+mat.getNumRows()+" , numCols = "+mat.getNumCols());
-		//format += " ";
-		for(int i=0; i<mat.getNumRows(); i++) {
-			StringBuffer row= new StringBuffer("");
-			for(int j=0; j<mat.getNumCols(); j++) {
-				double val = mat.get(i,j);
-                BigDecimal bd = new BigDecimal(val);
-                bd = bd.setScale(3, RoundingMode.HALF_UP);
-                
-        		if(bd.doubleValue()>=0)
-        			row.append(" +"+bd+" ");
-        		else
-        			row.append(" "+bd+" ");
-			}
-			lg.log(Level.INFO,row.toString());
+	public static void print(PrintStream out , RealMatrix64F mat , String format ) {
+
+		//String type = ReshapeMatrix.class.isAssignableFrom(mat.getClass()) ? "dense" : "dense fixed";
+		
+		String t = "";
+		try {
+			ReshapeMatrix rm_dummy = (ReshapeMatrix) mat;
+			t = "dense";
+		} catch(Exception e) {
+			t = "sparse";
 		}
+		
+		String type = t ; //"[unknown in GWT, ]";
+		out.println("Type = "+type+" real , numRows = "+mat.getNumRows()+" , numCols = "+mat.getNumCols());
 
-    }
+		format += " ";
 
-    public static void print( PrintStream out , RealMatrix64F mat , String format ,
-                              int row0 , int row1, int col0 , int col1 ) {
-        out.println("Type = submatrix , rows "+row0+" to "+row1+"  columns "+col0+" to "+col1);
-
-        //format += " ";
-		for(int i=row0; i<row1; i++) {
-			StringBuffer row= new StringBuffer("");
-			for(int j=col0; j<col1; j++) {
-				double val = mat.get(i,j);
-                BigDecimal bd = new BigDecimal(val);
-                bd = bd.setScale(3, RoundingMode.HALF_UP);
-                
-        		if(bd.doubleValue()>=0)
-        			row.append(" +"+bd+" ");
-        		else
-        			row.append(" "+bd+" ");
+		for( int y = 0; y < mat.getNumRows(); y++ ) {
+			for( int x = 0; x < mat.getNumCols(); x++ ) {
+				out.printf(format,mat.get(y,x));
 			}
-			lg.log(Level.INFO,row.toString());
+			out.println();
 		}
-    }
+	}
 
-    public static void print( PrintStream out , ComplexMatrix64F mat ) {
-        print(out,mat,6,3);
-    }
+	public static void print( PrintStream out , RealMatrix32F mat ) {
+		print(out,mat,6,3);
+	}
 
-    public static void print(PrintStream out, ComplexMatrix64F mat , int numChar , int precision ) {
-        String format = "%"+numChar+"."+precision+"f + %"+numChar+"."+precision+"fi";
+	public static void print(PrintStream out, RealMatrix32F mat , int numChar , int precision ) {
+		String format = "%"+numChar+"."+precision+"f ";
 
-        print(out, mat,format);
-    }
+		print(out, mat,format);
+	}
 
-    public static void print(PrintStream out , ComplexMatrix64F mat , String format ) {
-		String type = "Dense";
+	public static void print(PrintStream out , RealMatrix32F mat , String format ) {
 
-		lg.log(Level.INFO, "Type = Complex "+type+" , numRows = "+mat.getNumRows()+" , numCols = "+mat.getNumCols());
-		//format += " ";
-        Complex64F c = new Complex64F();
+		// String type = ReshapeMatrix.class.isAssignableFrom(mat.getClass()) ? "dense" : "dense fixed";
 
-		for(int i=0; i<mat.getNumRows(); i++) {
-			StringBuffer row= new StringBuffer("");
-			for(int j=0; j<mat.getNumCols(); j++) {
-				mat.get(i,j,c);
-                BigDecimal bd_real = new BigDecimal(c.real);
-                bd_real = bd_real.setScale(3, RoundingMode.HALF_UP);
-                BigDecimal bd_imag = new BigDecimal(c.imaginary);
-                bd_imag = bd_imag.setScale(3, RoundingMode.HALF_UP);
-                
-        		if(bd_real.doubleValue()>=0)
-        			row.append(" (+"+bd_real+", ");
-        		else
-        			row.append(" ("+bd_real+", ");
+		
+		String t = "";
+		try {
+			ReshapeMatrix rm_dummy = (ReshapeMatrix) mat;
+			t = "dense";
+		} catch(Exception e) {
+			t = "sparse";
+		}
+		
+		String type = t ; //"[unknown in GWT, ]";
 
-        		if(bd_imag.doubleValue()>=0)
-        			row.append(" +"+bd_imag+") ");
-        		else
-        			row.append(" "+bd_imag+") ");
-        		
+		out.println("Type = "+type+" , numRows = "+mat.getNumRows()+" , numCols = "+mat.getNumCols());
+
+		format += " ";
+
+		for( int y = 0; y < mat.getNumRows(); y++ ) {
+			for( int x = 0; x < mat.getNumCols(); x++ ) {
+				out.printf(format,mat.get(y,x));
 			}
-			lg.log(Level.INFO,row.toString());
+			out.println();
 		}
+	}
 
+	public static void print( PrintStream out , RealMatrix64F mat , String format ,
+			int row0 , int row1, int col0 , int col1 ) {
+		out.println("Type = submatrix , rows "+row0+" to "+row1+"  columns "+col0+" to "+col1);
 
-    }
+		format += " ";
 
-//    public static void main( String []args ) {
-//        Random rand = new Random(234234);
-//        DenseMatrix64F A = RandomMatrices.createRandom(50,70,rand);
-//
-//        SingularValueDecomposition decomp = DecompositionFactory.svd();
-//
-//        decomp.decompose(A);
-//
-//        displayMatrix(A,"Original");
-//        displayMatrix(decomp.getU(false),"U");
-//        displayMatrix(decomp.getV(false),"V");
-//        displayMatrix(decomp.getW(null),"W");
-//    }
+		for( int y = row0; y < row1; y++ ) {
+			for( int x = col0; x < col1; x++ ) {
+				out.printf(format,mat.get(y,x));
+			}
+			out.println();
+		}
+	}
+
+	public static void print( PrintStream out , ComplexMatrix64F mat ) {
+		print(out,mat,6,3);
+	}
+
+	public static void print(PrintStream out, ComplexMatrix64F mat , int numChar , int precision ) {
+		String format = "%"+numChar+"."+precision+"f + %"+numChar+"."+precision+"fi";
+
+		print(out, mat,format);
+	}
+
+	public static void print(PrintStream out , ComplexMatrix64F mat , String format ) {
+
+		String type = "dense";
+
+		out.println("Type = "+type+" complex , numRows = "+mat.getNumRows()+" , numCols = "+mat.getNumCols());
+
+		format += " ";
+
+		Complex64F c = new Complex64F();
+		for( int y = 0; y < mat.getNumRows(); y++ ) {
+			for( int x = 0; x < mat.getNumCols(); x++ ) {
+				mat.get(y,x,c);
+				out.printf(format,c.real,c.imaginary);
+				if( x < mat.getNumCols()-1 ) {
+					out.print(" , ");
+				}
+			}
+			out.println();
+		}
+	}
+
+	//    public static void main( String []args ) {
+	//        Random rand = new Random(234234);
+	//        DenseMatrix64F A = RandomMatrices.createRandom(50,70,rand);
+	//
+	//        SingularValueDecomposition decomp = DecompositionFactory.svd();
+	//
+	//        decomp.decompose(A);
+	//
+	//        displayMatrix(A,"Original");
+	//        displayMatrix(decomp.getU(false),"U");
+	//        displayMatrix(decomp.getV(false),"V");
+	//        displayMatrix(decomp.getW(null),"W");
+	//    }
 }

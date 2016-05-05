@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2014, Peter Abeles. All Rights Reserved.
+ * Copyright (c) 2009-2013, Peter Abeles. All Rights Reserved.
  *
  * This file is part of Efficient Java Matrix Library (EJML).
  *
@@ -16,33 +16,27 @@
  * limitations under the License.
  */
 
-package org.ejml.equation;
+package org.ejml.data;
 
-import org.ejml.equation.Variable;
-import org.ejml.equation.VariableType;
+import org.ejml.GWTEJMLTestCase;
+import org.junit.Test;
+
 
 /**
- * Variables which have special meanings depending on other matrices
- *
  * @author Peter Abeles
  */
-public class VariableSpecial extends Variable {
+public class TestBlockMatrix64F  extends GWTEJMLTestCase {
 
-    Special type;
+    @Test
+    public void testGeneric() {
+        GenericTestsD1Matrix64F g;
+        g = new GenericTestsD1Matrix64F() {
+            protected D1Matrix64F createMatrix(int numRows, int numCols) {
+                return new BlockMatrix64F(numRows,numCols,10);
+            }
+        };
 
-    protected VariableSpecial( Special special) {
-        super(VariableType.SPECIAL);
-        this.type = special;
+        g.allTests();
     }
 
-    public Special getValue() {
-        return type;
-    }
-
-    public static enum Special {
-        /** Maximum possible value */
-        END,
-        /** All values */
-        ALL
-    }
 }

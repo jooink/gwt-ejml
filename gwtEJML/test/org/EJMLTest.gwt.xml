@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.6.1.rc1//EN" "http://google-web-toolkit.googlecode.com/svn/tags/2.6.1.rc1/distro-source/core/src/gwt-module.dtd">
-<module>
-	<source path="ejml"/>
-	
-	
-	<super-source path="jre" />
-	
+<module rename-to='gwtejmltest'>
+
+  <inherits name='org.EJML'/>
+  <inherits name='com.jooink.gwtejml.gwtEJML_lib'/>
+
+  <source path="ejml"/>
+  
+  <super-source path="jre" />
+  
 </module>
