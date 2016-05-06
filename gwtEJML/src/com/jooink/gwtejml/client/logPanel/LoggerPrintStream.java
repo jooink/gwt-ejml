@@ -13,87 +13,111 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package java.io;
+package com.jooink.gwtejml.client.logPanel;
 
-import com.google.gwt.core.shared.GWT;
-import com.google.gwt.user.client.Window;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
 
 /**
  * @skip
  */
-public class PrintStream extends FilterOutputStream {
+public class LoggerPrintStream extends PrintStream {
 
-  public PrintStream(OutputStream out) {
-    super(out);   
+  private LogPanel logPanel;
+private Level level;
+
+public LoggerPrintStream(LogPanel logPanel, Level Level) {
+    super((OutputStream)null);
+	this.logPanel = logPanel;
+	level = Level;   
   }
 
-  //public PrintStream(String out) {
-  //	super((OutputStream)null); 
-  //  Window.alert("Alert! PrintStream("+out+") c'tor called");
-  //}
 
   public void print(boolean x) {
+	  logPanel.publish(new LogRecord(level, ""+x));
   }
 
   public void print(char x) {
+	  logPanel.publish(new LogRecord(level, ""+x));
   }
 
   public void print(char[] x) {
+	  logPanel.publish(new LogRecord(level, x.toString()));
   }
 
   public void print(double x) {
+	  logPanel.publish(new LogRecord(level, ""+x));
   }
 
   public void print(float x) {
+	  logPanel.publish(new LogRecord(level, ""+x));
   }
 
   public void print(int x) {
+	  logPanel.publish(new LogRecord(level, ""+x));
   }
 
   public void print(long x) {
+	  logPanel.publish(new LogRecord(level, ""+x));
   }
 
   public void print(Object x) {
+	  logPanel.publish(new LogRecord(level, ""+x));
   }
 
   public void print(String s) {
+	  logPanel.publish(new LogRecord(level, s));
   }
 
   public void println() {
+	  logPanel.publish(new LogRecord(level, ""));
   }
 
   public void println(boolean x) {
+	  logPanel.publish(new LogRecord(level, ""+x));
   }
 
   public void println(char x) {
+	  logPanel.publish(new LogRecord(level, ""+x));
   }
 
   public void println(char[] x) {
+	  logPanel.publish(new LogRecord(level, x.toString()));
+
   }
 
   public void println(double x) {
+	  logPanel.publish(new LogRecord(level, ""+x));
   }
 
   public void println(float x) {
-  }
+	  logPanel.publish(new LogRecord(level, ""+x));
+ }
 
   public void println(int x) {
+	  logPanel.publish(new LogRecord(level, ""+x));
   }
 
   public void println(long x) {
+	  logPanel.publish(new LogRecord(level, ""+x));
   }
 
   public void println(Object x) {
+	  logPanel.publish(new LogRecord(level, ""+x));
   }
 
   public void println(String s) {
+	  logPanel.publish(new LogRecord(level, s));
   }
 
   public void printf(String s, double d) {
+	  logPanel.publish(new LogRecord(level, ""+d));
   }
   
   public void printf(String s, double d1, double d2) {
-//      Window.alert("Alert! PrintStream frintf("+s+","+d1+","+d2+") called");
+	  logPanel.publish(new LogRecord(level, ""+d1+" "+d2));
   }
   
   public void close() {

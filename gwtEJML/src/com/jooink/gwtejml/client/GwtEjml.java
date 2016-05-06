@@ -1,10 +1,8 @@
 package com.jooink.gwtejml.client;
 
-import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.ejml.example.ExampleComplexMath;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -18,7 +16,6 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.jooink.gwtejml.client.logPanel.LogPanel;
 import com.jooink.gwtejml.client.test.BenchmarkKalmanPerformance;
-import com.jooink.gwtejml.client.test.ConsolePrintStream;
 import com.jooink.gwtejml.client.test.EquationCustomFunction;
 import com.jooink.gwtejml.client.test.ExampleFixedSizedMatrix;
 import com.jooink.gwtejml.client.test.StatisticsMatrix;
@@ -32,26 +29,32 @@ public class GwtEjml implements EntryPoint, UncaughtExceptionHandler {
 	public void onModuleLoad() {
 
 		GWT.setUncaughtExceptionHandler(this);
-		
+
 		//sometime ejm uses System.out so 
 		//to get the output we should redirect somewhere
-		
-		System.setOut( new ConsolePrintStream());
-		
-		
-		
+
+
+
+
 		final ListBox lb=new ListBox();
 		lb.addItem("Select an operation");
 		lb.addItem("Performace Kalman Benchmark");
 		lb.addItem("Equation Custom Function");
 		lb.addItem("Statistics Matrix");
 		lb.addItem("Fixed Sized Matrix");
+		lb.addItem("ExampleComplexMath");
+		
+		
 		RootPanel.get().add(lb);
 
 		final LogPanel lp=new LogPanel(Level.ALL,false,false);
 		lp.setTitle("Results");
 		RootPanel.get().add(lp.getWidget());
-		final Logger lg=Logger.getLogger("");
+		//final Logger lg=Logger.getLogger("");
+
+		System.setOut( lp.getPrtinStream(Level.SEVERE));
+
+
 
 		lb.addChangeHandler(new ChangeHandler() {
 
@@ -60,7 +63,7 @@ public class GwtEjml implements EntryPoint, UncaughtExceptionHandler {
 				lp.clear();
 				//lg.log(Level.INFO,"Starting ...");
 				int index=lb.getSelectedIndex();
-				
+
 				switch (index) {
 				case 1:
 					Scheduler.get().scheduleDeferred(new ScheduledCommand() {    
@@ -94,23 +97,38 @@ public class GwtEjml implements EntryPoint, UncaughtExceptionHandler {
 						}
 					});
 					break;
+				case 5:
+					Scheduler.get().scheduleDeferred(new ScheduledCommand() {    
+						@Override
+						public void execute() {
+							ExampleComplexMath.main(null);
+						}
+					});
+					break;
 				}
+
+
+
+
 			}
 		});
 	}
 
+	
+	
+	
 	@Override
 	public void onUncaughtException(Throwable e) {
 		String s = new String();			
-		
+
 		StackTraceElement[] st = e.getStackTrace();
-		
+
 		for(StackTraceElement ste :  st) {
-				s += ste.toString() + "\n";
+			s += ste.toString() + "\n";
 		}
-		
-		
+
+
 		Window.alert(s);
-		
+
 	}
 }

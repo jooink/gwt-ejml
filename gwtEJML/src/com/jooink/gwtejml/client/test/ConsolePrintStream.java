@@ -3,9 +3,6 @@ package com.jooink.gwtejml.client.test;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-import com.google.gwt.core.shared.GWT;
-import com.google.gwt.user.client.Window;
-
 /**
  * Print stream for GWT that prints to the browser console.
  * 

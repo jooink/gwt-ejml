@@ -1,5 +1,7 @@
 package com.jooink.gwtejml.client.logPanel;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
@@ -14,13 +16,13 @@ public class LogPanel extends Handler {
 	boolean showLevel=true;
 	boolean showInfo=true;	
 	LogPanelUI messagePanel=new LogPanelUI();
-	
+
 	public LogPanel(Level minLevel) {
 		lg=Logger.getLogger("");
 		lg.addHandler(this);
 		this.minLevel=minLevel;
 	}
-	
+
 	public LogPanel(Level minLevel, boolean showLevel, boolean showInfo) {
 		lg=Logger.getLogger("");
 		lg.addHandler(this);
@@ -55,19 +57,35 @@ public class LogPanel extends Handler {
 			}
 		}
 	}
-	
+
 	public Widget getWidget() {
 		return messagePanel;
 	}
-	
+
 	public void setTitle(String title) {
 		this.messagePanel.setTitle(title);
 	}
-	
+
 	/**
 	 * Pulisce il pannello dai messaggi di log
 	 */
 	public void clear() {
 		messagePanel.clear();
 	}
+
+	/**
+	 * ritorna un PrintStream associato ad un loglevel
+	 * cosicche' se facciamo system.setout(prinstream) i system.println scriveranno sul pannello
+	 * 
+	 */
+
+	public PrintStream getPrtinStream(Level level) {
+		return new LoggerPrintStream(this,level);
+
+	}
+
 }
+
+
+
+
