@@ -2,7 +2,6 @@ package com.jooink.gwtejml.sample.client;
 
 import java.util.logging.Level;
 
-import org.ejml.example.EquationCustomFunction;
 import org.ejml.example.ExampleComplexMath;
 import org.ejml.example.ExampleFixedSizedMatrix;
 import org.ejml.example.StatisticsMatrix;
@@ -76,8 +75,8 @@ public class GwtEjmlSample implements EntryPoint, UncaughtExceptionHandler {
 					Scheduler.get().scheduleDeferred(new ScheduledCommand() {    
 						@Override
 						public void execute() {
-							//EquationCustomFunction.init();
-							EquationCustomFunction.main(null);
+							EquationCustomFunction.init();
+							//EquationCustomFunction.main(null);
 							
 						}
 					});
