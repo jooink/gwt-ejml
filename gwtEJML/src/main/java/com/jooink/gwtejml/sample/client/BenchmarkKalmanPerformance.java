@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package com.jooink.gwtejml.client.test;
+package com.jooink.gwtejml.sample.client;
 
 import java.util.ArrayList;
 import java.util.List;

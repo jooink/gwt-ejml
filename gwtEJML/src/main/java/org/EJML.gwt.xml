@@ -3,7 +3,5 @@
 <module>
 	<source path="ejml"/>
 	
-	
-	<super-source path="jre" />
-	
+	<!-- <super-source path="jre" />   -->
 </module>

@@ -1,11 +1,13 @@
-package com.jooink.gwtejml.client;
+package com.jooink.gwtejml.sample.client;
 
 import java.util.logging.Level;
 
+import org.ejml.example.EquationCustomFunction;
 import org.ejml.example.ExampleComplexMath;
+import org.ejml.example.ExampleFixedSizedMatrix;
+import org.ejml.example.StatisticsMatrix;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.GWT.UncaughtExceptionHandler;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
@@ -15,24 +17,20 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.jooink.gwtejml.client.logPanel.LogPanel;
-import com.jooink.gwtejml.client.test.BenchmarkKalmanPerformance;
-import com.jooink.gwtejml.client.test.EquationCustomFunction;
-import com.jooink.gwtejml.client.test.ExampleFixedSizedMatrix;
-import com.jooink.gwtejml.client.test.StatisticsMatrix;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
-public class GwtEjml implements EntryPoint, UncaughtExceptionHandler {
+public class GwtEjmlSample implements EntryPoint, UncaughtExceptionHandler {
+
 
 	@Override
 	public void onModuleLoad() {
 
-		GWT.setUncaughtExceptionHandler(this);
+		//GWT.setUncaughtExceptionHandler(this);
 
 		//sometime ejm uses System.out so 
 		//to get the output we should redirect somewhere
-
 
 
 
@@ -43,8 +41,8 @@ public class GwtEjml implements EntryPoint, UncaughtExceptionHandler {
 		lb.addItem("Statistics Matrix");
 		lb.addItem("Fixed Sized Matrix");
 		lb.addItem("ExampleComplexMath");
-		
-		
+
+
 		RootPanel.get().add(lb);
 
 		final LogPanel lp=new LogPanel(Level.ALL,false,false);
@@ -52,7 +50,8 @@ public class GwtEjml implements EntryPoint, UncaughtExceptionHandler {
 		RootPanel.get().add(lp.getWidget());
 		//final Logger lg=Logger.getLogger("");
 
-		System.setOut( lp.getPrtinStream(Level.SEVERE));
+		System.setOut( lp.getPrintStream(Level.INFO));
+		System.setErr( lp.getPrintStream(Level.SEVERE));
 
 
 
@@ -77,7 +76,9 @@ public class GwtEjml implements EntryPoint, UncaughtExceptionHandler {
 					Scheduler.get().scheduleDeferred(new ScheduledCommand() {    
 						@Override
 						public void execute() {
-							EquationCustomFunction.init();
+							//EquationCustomFunction.init();
+							EquationCustomFunction.main(null);
+							
 						}
 					});
 					break;
@@ -85,7 +86,8 @@ public class GwtEjml implements EntryPoint, UncaughtExceptionHandler {
 					Scheduler.get().scheduleDeferred(new ScheduledCommand() {    
 						@Override
 						public void execute() {
-							StatisticsMatrix.init();
+							//StatisticsMatrix.init();
+							StatisticsMatrix.main(null);
 						}
 					});
 					break;
@@ -93,7 +95,8 @@ public class GwtEjml implements EntryPoint, UncaughtExceptionHandler {
 					Scheduler.get().scheduleDeferred(new ScheduledCommand() {    
 						@Override
 						public void execute() {
-							ExampleFixedSizedMatrix.init();
+							//ExampleFixedSizedMatrix.init();
+							ExampleFixedSizedMatrix.main(null);
 						}
 					});
 					break;
@@ -108,15 +111,20 @@ public class GwtEjml implements EntryPoint, UncaughtExceptionHandler {
 				}
 
 
+				try {
+					System.err.flush();
+					System.out.flush();
+				} catch( Exception e) {
 
+				}
 
 			}
 		});
 	}
 
-	
-	
-	
+
+
+
 	@Override
 	public void onUncaughtException(Throwable e) {
 		String s = new String();			
